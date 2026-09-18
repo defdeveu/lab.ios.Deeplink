@@ -1,37 +1,21 @@
 import SwiftUI
 
 @main
-struct lab_ios_DeeplinkApp: App {
-    @State var deeplink: Deeplink?
+struct DeeplinkLabApp: App {
+    @State private var viewModel: ContentViewModel
 
+    @MainActor
     init() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor(AppColors.navigationBackground)
-        appearance.backgroundImage = AppImages.navigationImage
-
-        let attrs: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor(AppColors.navigationForeground)
-        ]
-
-        appearance.largeTitleTextAttributes = attrs
-        appearance.titleTextAttributes = attrs
-
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        UINavigationBar.appearance().standardAppearance = appearance
+        _viewModel = State(initialValue: AppRepository.makeContentViewModel())
     }
 
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                ContentView()
-                    .environment(\.deeplink, deeplink)
-                    .onOpenURL { url in
-                        deeplink = AppRepository.shared.deeplinker.manage(url: url)
-                    }
+            NavigationStack {
+                ContentView(viewModel: viewModel)
             }
-            .navigationViewStyle(.stack)
-            .preferredColorScheme(.dark)
+            .tint(.orange)
+            .onOpenURL(perform: viewModel.handle)
         }
     }
 }

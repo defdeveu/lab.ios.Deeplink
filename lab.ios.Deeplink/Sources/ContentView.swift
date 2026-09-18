@@ -1,85 +1,77 @@
 import SwiftUI
-import AlertToast
 
 struct ContentView: View {
-    @Environment(\.deeplink) var deeplink
-    @StateObject private var viewModel: ContentViewModel = ContentViewModel()
-    @State private var showDeeplinkToast = false
+    @State private var viewModel: ContentViewModel
+
+    @MainActor
+    init(viewModel: ContentViewModel = AppRepository.makeContentViewModel()) {
+        _viewModel = State(initialValue: viewModel)
+    }
 
     var body: some View {
+        @Bindable var viewModel = viewModel
+
         ScrollView {
-            VStack(spacing: 20) {
-                Text("The app implements the following actions to be called from Safari:")
+            VStack(alignment: .leading, spacing: 24) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Deep-link actions")
+                        .font(.largeTitle.bold())
+                    Text("Copy a sample URL, then open it from Safari or another app.")
+                        .foregroundStyle(.secondary)
+                }
 
-                menu()
+                ForEach(viewModel.samples) { sample in
+                    sampleButton(sample)
+                }
 
-                Spacer()
+                if let copiedURL = viewModel.lastCopiedURL {
+                    Label("Copied \(copiedURL)", systemImage: "checkmark.circle.fill")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .accessibilityLabel("Copied sample URL")
+                }
             }
-            .padding()
+            .frame(maxWidth: 640, alignment: .leading)
+            .padding(24)
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar { appTitle() }
-        .toast(isPresenting: $viewModel.showToast,
-               alert: {
-            AlertToast(displayMode: .alert,
-                       type: .systemImage("checkmark", AppColors.checkmark),
-                       title: "Copied!")
-        })
-        .onChange(of: deeplink) { deeplink in
-            guard deeplink != nil else { return }
-
-            showDeeplinkToast = true
-        }
-        .alert(isPresented: $showDeeplinkToast, content: {
-            Alert(title: Text(deeplink?.description ?? "Unknown deeplink"))
-        })
-    }
-
-    @ViewBuilder
-    private func menu() -> some View {
-        VStack(spacing: 10) {
-            menuButton("defdev://12345?view")
-            menuButton("defdev://12345?delete")
-            menuButton("defdev://deleteall")
-        }
-    }
-
-    @ToolbarContentBuilder
-    private func appTitle() -> some ToolbarContent {
-        ToolbarItem(placement: .navigationBarLeading) {
-            HStack {
-                AppImages.appTitleImage
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .colorInvert()
-                // TODO colorInvert as per the scheme
-                Text(AppStrings.appTitle)
-                    .font(.title.bold())
-                    .foregroundColor(AppColors.navigationForeground)
-            }
-            .padding(.bottom, 8)
+        .navigationTitle(AppStrings.appTitle)
+        .toolbarTitleDisplayMode(.inline)
+        .labToolbar()
+        .alert(
+            viewModel.notice?.title ?? "Deep link",
+            isPresented: Binding(
+                get: { viewModel.notice != nil },
+                set: { isPresented in
+                    if !isPresented {
+                        viewModel.clearNotice()
+                    }
+                }
+            ),
+            presenting: viewModel.notice
+        ) { _ in
+            Button("OK", role: .cancel, action: viewModel.clearNotice)
+        } message: { notice in
+            Text(notice.message)
         }
     }
 
     @ViewBuilder
-    private func menuButton(_ title: String) -> some View {
+    private func sampleButton(_ sample: DeepLinkSample) -> some View {
         Button {
-            viewModel.copyToClipboard(title)
+            viewModel.copy(sample)
         } label: {
-            AppImages.copyImage
-
-            Text(title)
+            Label(sample.urlText, systemImage: "doc.on.doc")
+                .fontDesign(.monospaced)
         }
         .buttonStyle(SolidButtonStyle())
+        .accessibilityHint("Copies this URL to the clipboard")
     }
 }
 
-#if DEBUG
-@available(iOS 15.0, *)
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .previewInterfaceOrientation(.landscapeLeft)
+        NavigationStack {
+            ContentView()
+        }
     }
 }
-#endif

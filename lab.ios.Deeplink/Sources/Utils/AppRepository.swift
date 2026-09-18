@@ -1,12 +1,9 @@
-import Foundation
-
-// MARK: - Application Services
-
-final class AppRepository {
-    static var shared = AppRepository()
-    private init() { }
-
-    lazy var deeplinker: DeeplinkerProtocol = {
-        Deeplinker()
-    }()
+@MainActor
+enum AppRepository {
+    static func makeContentViewModel() -> ContentViewModel {
+        ContentViewModel(
+            parser: DeepLinkParser(),
+            clipboard: SystemClipboard()
+        )
+    }
 }

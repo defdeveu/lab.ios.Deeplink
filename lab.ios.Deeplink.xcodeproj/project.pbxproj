@@ -3,9 +3,8 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 100;
 	objects = {
-
 
 /* Begin PBXContainerItemProxy section */
 		FD3000000000000000000001 /* PBXContainerItemProxy */ = {
@@ -18,26 +17,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-
 		FA1DA017277CB60C0045D9C0 /* Deeplink lab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Deeplink lab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-
-		FD2000000000000000000002 /* Deeplink labTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Deeplink labTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD2000000000000000000002 /* lab.ios.DeeplinkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lab.ios.DeeplinkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 		5D457CECB46B588965D86E99 /* Exceptions for "lab.ios.Deeplink" folder in "lab.ios.Deeplink" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				lab-ios-Deeplink-Info.plist,
+				"lab-ios-Deeplink-Info.plist",
 			);
 			target = FA1DA016277CB60C0045D9C0 /* lab.ios.Deeplink */;
 		};
-
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-
 		0C06CEA173E8224373D7814E /* lab.ios.Deeplink */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -51,42 +45,36 @@
 			path = lab.ios.DeeplinkTests;
 			sourceTree = "<group>";
 		};
-
 /* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		FA1DA014277CB60C0045D9C0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		FD4000000000000000000001 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-
 		FA1DA00E277CB60C0045D9C0 = {
 			isa = PBXGroup;
 			children = (
-				0C06CEA173E8224373D7814E,
-				37A2DAAEC63F66DA23FAB5E7,
-				FA1DA018277CB60C0045D9C0,
+				0C06CEA173E8224373D7814E /* lab.ios.Deeplink */,
+				37A2DAAEC63F66DA23FAB5E7 /* lab.ios.DeeplinkTests */,
+				FA1DA018277CB60C0045D9C0 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-
 		FA1DA018277CB60C0045D9C0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FA1DA017277CB60C0045D9C0,
-				FD2000000000000000000002,
+				FA1DA017277CB60C0045D9C0 /* Deeplink lab.app */,
+				FD2000000000000000000002 /* lab.ios.DeeplinkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,8 +91,6 @@
 				FA1DA015277CB60C0045D9C0 /* Resources */,
 			);
 			buildRules = (
-			);
-			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
 				0C06CEA173E8224373D7814E /* lab.ios.Deeplink */,
@@ -132,7 +118,7 @@
 			);
 			name = lab.ios.DeeplinkTests;
 			productName = "Deeplink labTests";
-			productReference = FD2000000000000000000002 /* Deeplink labTests.xctest */;
+			productReference = FD2000000000000000000002 /* lab.ios.DeeplinkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -143,7 +129,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2700;
-				LastUpgradeCheck = 2700;
+				LastUpgradeCheck = 2720;
 				TargetAttributes = {
 					FA1DA016277CB60C0045D9C0 = {
 						CreatedOnToolsVersion = 27.0;
@@ -162,7 +148,7 @@
 				Base,
 			);
 			mainGroup = FA1DA00E277CB60C0045D9C0;
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 100;
 			productRefGroup = FA1DA018277CB60C0045D9C0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -176,34 +162,26 @@
 /* Begin PBXResourcesBuildPhase section */
 		FA1DA015277CB60C0045D9C0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		FD8000000000000000000002 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FA1DA013277CB60C0045D9C0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		FD8000000000000000000001 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -216,10 +194,11 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		FA1DA023277CB60F0045D9C0 /* Debug */ = {
+		FA1DA023277CB60F0045D9C0 /* Debug configuration for PBXProject "lab.ios.Deeplink" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -253,6 +232,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -272,15 +252,17 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		FA1DA024277CB60F0045D9C0 /* Release */ = {
+		FA1DA024277CB60F0045D9C0 /* Release configuration for PBXProject "lab.ios.Deeplink" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -314,6 +296,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -326,17 +309,18 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		FA1DA026277CB60F0045D9C0 /* Debug */ = {
+		FA1DA026277CB60F0045D9C0 /* Debug configuration for PBXNativeTarget "lab.ios.Deeplink" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
@@ -365,11 +349,11 @@
 			};
 			name = Debug;
 		};
-		FA1DA027277CB60F0045D9C0 /* Release */ = {
+		FA1DA027277CB60F0045D9C0 /* Release configuration for PBXNativeTarget "lab.ios.Deeplink" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
@@ -398,7 +382,7 @@
 			};
 			name = Release;
 		};
-		FDA000000000000000000001 /* Debug */ = {
+		FDA000000000000000000001 /* Debug configuration for PBXNativeTarget "lab.ios.DeeplinkTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -421,7 +405,7 @@
 			};
 			name = Debug;
 		};
-		FDA000000000000000000002 /* Release */ = {
+		FDA000000000000000000002 /* Release configuration for PBXNativeTarget "lab.ios.DeeplinkTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -450,28 +434,25 @@
 		FA1DA012277CB60C0045D9C0 /* Build configuration list for PBXProject "lab.ios.Deeplink" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FA1DA023277CB60F0045D9C0 /* Debug */,
-				FA1DA024277CB60F0045D9C0 /* Release */,
+				FA1DA023277CB60F0045D9C0 /* Debug configuration for PBXProject "lab.ios.Deeplink" */,
+				FA1DA024277CB60F0045D9C0 /* Release configuration for PBXProject "lab.ios.Deeplink" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		FA1DA025277CB60F0045D9C0 /* Build configuration list for PBXNativeTarget "lab.ios.Deeplink" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FA1DA026277CB60F0045D9C0 /* Debug */,
-				FA1DA027277CB60F0045D9C0 /* Release */,
+				FA1DA026277CB60F0045D9C0 /* Debug configuration for PBXNativeTarget "lab.ios.Deeplink" */,
+				FA1DA027277CB60F0045D9C0 /* Release configuration for PBXNativeTarget "lab.ios.Deeplink" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		FD7000000000000000000001 /* Build configuration list for PBXNativeTarget "lab.ios.DeeplinkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FDA000000000000000000001 /* Debug */,
-				FDA000000000000000000002 /* Release */,
+				FDA000000000000000000001 /* Debug configuration for PBXNativeTarget "lab.ios.DeeplinkTests" */,
+				FDA000000000000000000002 /* Release configuration for PBXNativeTarget "lab.ios.DeeplinkTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */

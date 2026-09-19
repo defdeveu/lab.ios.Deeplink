@@ -1,53 +1,51 @@
 import Foundation
-import XCTest
+import Testing
 @testable import lab_ios_Deeplink
 
-final class DeepLinkParserTests: XCTestCase {
+@Suite
+struct DeepLinkParserTests {
     private let parser = DeepLinkParser()
 
-    func testParsesViewAction() throws {
-        let action = parser.parse(url: try XCTUnwrap(URL(string: "defdev://12345?view")))
+    @Test
+    func parsesViewAction() throws {
+        let action = parser.parse(url: try #require(URL(string: "defdev://12345?view")))
 
-        XCTAssertEqual(action, .view(reference: "12345"))
+        #expect(action == .view(reference: "12345"))
     }
 
-    func testParsesDeleteAction() throws {
-        let action = parser.parse(url: try XCTUnwrap(URL(string: "defdev://item_42?delete")))
+    @Test
+    func parsesDeleteAction() throws {
+        let action = parser.parse(url: try #require(URL(string: "defdev://item_42?delete")))
 
-        XCTAssertEqual(action, .delete(reference: "item_42"))
+        #expect(action == .delete(reference: "item_42"))
     }
 
-    func testParsesDeleteAllAction() throws {
-        let action = parser.parse(url: try XCTUnwrap(URL(string: "defdev://deleteall")))
+    @Test
+    func parsesDeleteAllAction() throws {
+        let action = parser.parse(url: try #require(URL(string: "defdev://deleteall")))
 
-        XCTAssertEqual(action, .deleteAll)
+        #expect(action == .deleteAll)
     }
 
-    func testRejectsUnregisteredSchemeAndUnknownAction() throws {
-        XCTAssertNil(
-            parser.parse(url: try XCTUnwrap(URL(string: "https://12345?view")))
-        )
-        XCTAssertNil(
-            parser.parse(url: try XCTUnwrap(URL(string: "defdev://12345?export")))
-        )
+    @Test
+    func rejectsUnregisteredSchemeAndUnknownAction() throws {
+        #expect(parser.parse(url: try #require(URL(string: "https://12345?view"))) == nil)
+        #expect(parser.parse(url: try #require(URL(string: "defdev://12345?export"))) == nil)
     }
 
-    func testRejectsUnexpectedPathFragmentAndDeleteAllQuery() throws {
-        XCTAssertNil(
-            parser.parse(url: try XCTUnwrap(URL(string: "defdev://12345/path?view")))
-        )
-        XCTAssertNil(
-            parser.parse(url: try XCTUnwrap(URL(string: "defdev://12345?view#fragment")))
-        )
-        XCTAssertNil(
-            parser.parse(url: try XCTUnwrap(URL(string: "defdev://deleteall?view")))
-        )
+    @Test
+    func rejectsUnexpectedPathFragmentAndDeleteAllQuery() throws {
+        #expect(parser.parse(url: try #require(URL(string: "defdev://12345/path?view"))) == nil)
+        #expect(parser.parse(url: try #require(URL(string: "defdev://12345?view#fragment"))) == nil)
+        #expect(parser.parse(url: try #require(URL(string: "defdev://deleteall?view"))) == nil)
     }
 }
 
 @MainActor
-final class ContentViewModelTests: XCTestCase {
-    func testCopyWritesSampleAndPublishesFeedback() {
+@Suite
+struct ContentViewModelTests {
+    @Test
+    func copyWritesSampleAndPublishesFeedback() {
         let clipboard = RecordingClipboard()
         let viewModel = ContentViewModel(
             parser: DeepLinkParser(),
@@ -57,34 +55,33 @@ final class ContentViewModelTests: XCTestCase {
 
         viewModel.copy(sample)
 
-        XCTAssertEqual(clipboard.writtenText, sample.urlText)
-        XCTAssertEqual(viewModel.lastCopiedURL, sample.urlText)
+        #expect(clipboard.writtenText == sample.urlText)
+        #expect(viewModel.lastCopiedURL == sample.urlText)
     }
 
-    func testRecognizedURLPublishesActionNotice() throws {
+    @Test
+    func recognizedURLPublishesActionNotice() throws {
         let viewModel = ContentViewModel(
             parser: DeepLinkParser(),
             clipboard: RecordingClipboard()
         )
 
-        viewModel.handle(url: try XCTUnwrap(URL(string: "defdev://12345?delete")))
+        viewModel.handle(url: try #require(URL(string: "defdev://12345?delete")))
 
-        XCTAssertEqual(
-            viewModel.notice,
-            .action(.delete(reference: "12345"))
-        )
+        #expect(viewModel.notice == .action(.delete(reference: "12345")))
     }
 
-    func testUnsupportedURLPublishesRejectionNotice() throws {
+    @Test
+    func unsupportedURLPublishesRejectionNotice() throws {
         let viewModel = ContentViewModel(
             parser: DeepLinkParser(),
             clipboard: RecordingClipboard()
         )
-        let url = try XCTUnwrap(URL(string: "https://example.invalid/item"))
+        let url = try #require(URL(string: "https://example.invalid/item"))
 
         viewModel.handle(url: url)
 
-        XCTAssertEqual(viewModel.notice, .unsupported(url: url))
+        #expect(viewModel.notice == .unsupported(url: url))
     }
 }
 
